@@ -66,3 +66,10 @@ export const mockTreeList = (
     console.error('mockTreeList params error');
   }
 };
+
+/** 根据 节点的 path 获取 tree data 上节点的 children */
+export const getChildrenInTree = (treeData, path) => {
+  return path.reduce((result, current) => {
+    return result.find(node => node.key === current).children;
+  }, treeData);
+};
