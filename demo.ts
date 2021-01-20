@@ -1,32 +1,21 @@
 import { mockDataList, mockTreeList } from './index';
 
-/** 资产专题 手动添加 modal上的表格数据 mock */
-export const mockAddModalDataList = mockDataList(100, index => ({
-  name: `name-${index}`,
-  cname: `mingcheng-${index}`,
-  owner: `owner-${index}`,
-  id: `id-${index}`,
-}));
-
-/** 资产专题-资产-数据表 mock data list */
-export const mockAssetsListTableData = mockDataList(100, index => ({
+/** table rows mock */
+export const mockTableRows = mockDataList(100, index => ({
   name: `name-${index}`,
   desc: `desc-${index}`,
   alias: `mingcheng-${index}`,
   owner: `owner-${index}`,
   id: `id-${index}`,
 }));
-/** 资产专题-资产-指标 mock data list */
+
+/** list data mock  */
 export const mockAssetsListIndexData = mockDataList(100, index => ({
   name: `name-${index}`,
-  desc: `desc-${index}`,
-  alias: `mingcheng-${index}`,
-  owner: `owner-${index}`,
-  statisticGrading: `grading-${index}`,
   id: `id-${index}`,
 }));
 
-/** 资产专题-tree data list mock */
+/** tree data mock */
 export const mockTopicAssetsTreeList = mockTreeList(
   (index, level, key, parentKey, path) => ({
     title: key,
