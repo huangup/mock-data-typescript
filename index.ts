@@ -8,6 +8,14 @@ export const mockDataList = (total: number, createItem: (index: number) => Obj) 
   return [...Array(total).keys()].map((item: number) => createItem(item));
 };
 
+/** 获取分页数据 page从1开始 */
+export const getMockPageList = (dataList: any[] = [], pageIndex = 1, pageSize = 8) => {
+  const index = pageIndex - 1;
+  const start = index * pageSize;
+  const end = start + pageSize;
+  return dataList.slice(start, end);
+};
+
 interface Options {
   /* 第几层(从0开始): 配置几个节点 */
   [level: number]: number;
