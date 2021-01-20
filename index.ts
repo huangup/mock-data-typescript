@@ -26,12 +26,13 @@ export const mockTreeList = (
   createItem: (index?: number, level?: number, key?: string, parentKey?: string, path?: string[]) => Obj,
 
   /* 嵌套层级限制(从0开始 < 5) */
-  levelLimit = 5,
+  limit?: number,
 
   /* 数据配置项，默认每层5个节点 */
   opts?: Options,
 ) => {
   try {
+    const levelLimit = limit || 5;
     const options = { ...(opts || {}) };
 
     if (!opts) {
