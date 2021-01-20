@@ -23,7 +23,14 @@ interface Options {
 /** mock 树形结构的数据 */
 export const mockTreeList = (
   /* 节点的数据对象 */
-  createItem: (index?: number, level?: number, key?: string, parentKey?: string, path?: string[]) => Obj,
+  createItem: (
+    index?: number,
+    level?: number,
+    key?: string,
+    parentKey?: string,
+    path?: string[],
+    isLeaf?: boolean,
+  ) => Obj,
 
   /* 嵌套层级限制(从0开始 < 5) */
   limit?: number,
@@ -50,12 +57,13 @@ export const mockTreeList = (
         const key = parentKey ? `${parentKey}-${index}` : `${index}`;
         const nextLevel = level + 1;
         const path = [...parentPath, key];
+        const isLeaf = level === levelLimit;
         return {
-          ...createItem(level, index, key, parentKey, path),
+          ...createItem(level, index, key, parentKey, path, isLeaf),
           key,
           path,
-          children: createNodes(nextLevel, key, path),
-          isLeaf: level === levelLimit,
+          isLeaf,
+          children: createNodes(nextLevel, key, path)
         };
       });
       return treeNodes;
