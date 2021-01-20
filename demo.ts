@@ -17,13 +17,14 @@ export const mockAssetsListIndexData = mockDataList(100, index => ({
 
 /** tree data mock */
 export const mockTopicAssetsTreeList = mockTreeList(
-  (index, level, key, parentKey, path) => ({
+  (index, level, key, parentKey, path, isLeaf) => ({
     title: key,
     level,
     index,
     key,
     parentKey,
     path,
+    isLeaf
   }),
   5,
   { 0: 5, 1: 7, 2: 3, 3: 2, 4: 4 },
