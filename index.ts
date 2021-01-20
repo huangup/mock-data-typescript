@@ -1,0 +1,59 @@
+interface Obj {
+  [attr: string]: any;
+  [attr: number]: any;
+}
+
+/** mock 列表型的数据 */
+export const mockDataList = (total: number, createItem: (index: number) => Obj) => {
+  return [...Array(total).keys()].map((item: number) => createItem(item));
+};
+
+interface Options {
+  /* 第几层(从0开始): 配置几个节点 */
+  [level: number]: number;
+}
+/** mock 树形结构的数据 */
+export const mockTreeList = (
+  /* 节点的数据对象 */
+  createItem: (index?: number, level?: number, key?: string, parentKey?: string, path?: string[]) => Obj,
+
+  /* 嵌套层级限制(从0开始 < 5) */
+  levelLimit = 5,
+
+  /* 数据配置项，默认每层5个节点 */
+  opts?: Options,
+) => {
+  try {
+    const options = { ...(opts || {}) };
+
+    if (!opts) {
+      for (let i = 0; i < levelLimit; i++) {
+        options[i] = 5;
+      }
+    }
+
+    const createNodes = (level: number, parentKey?: string, parentPath?: string[]) => {
+      if (level >= levelLimit) {
+        return;
+      }
+      const total = options[level];
+      const treeNodes = mockDataList(total, index => {
+        const key = parentKey ? `${parentKey}-${index}` : `${index}`;
+        const nextLevel = level + 1;
+        const path = [...parentPath, key];
+        return {
+          ...createItem(level, index, key, parentKey, path),
+          key,
+          path,
+          children: createNodes(nextLevel, key, path),
+          isLeaf: level === levelLimit,
+        };
+      });
+      return treeNodes;
+    };
+    const treeData = createNodes(0, '', []);
+    return treeData;
+  } catch (e) {
+    console.error('mockTreeList params error');
+  }
+};
