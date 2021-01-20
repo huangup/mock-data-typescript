@@ -29,7 +29,7 @@ export const mockTreeList = (
     key?: string,
     parentKey?: string,
     path?: string[],
-    isLeaf?: boolean,
+    isLeaf?: boolean
   ) => Obj,
 
   /* 嵌套层级限制(从0开始 < 5) */
