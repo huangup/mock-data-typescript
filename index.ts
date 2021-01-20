@@ -60,7 +60,10 @@ export const mockTreeList = (
         const isLeaf = level === levelLimit - 1;
         return {
           ...createItem(level, index, key, parentKey, path, isLeaf),
+          level,
+          index,
           key,
+          parentKey,
           path,
           isLeaf,
           children: createNodes(nextLevel, key, path)
