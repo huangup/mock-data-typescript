@@ -20,6 +20,12 @@ export const mockTopicAssetsTreeList = mockTreeList(
   (level, index, key, parentKey, path, isLeaf) => ({
     title: key,
     data: {
+      level,
+      index,
+      key,
+      parentKey,
+      path,
+      isLeaf,
       associated: false,
     },
   }),
