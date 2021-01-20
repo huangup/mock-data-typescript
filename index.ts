@@ -57,7 +57,7 @@ export const mockTreeList = (
         const key = parentKey ? `${parentKey}-${index}` : `${index}`;
         const nextLevel = level + 1;
         const path = [...parentPath, key];
-        const isLeaf = level === levelLimit;
+        const isLeaf = level === levelLimit - 1;
         return {
           ...createItem(level, index, key, parentKey, path, isLeaf),
           key,
