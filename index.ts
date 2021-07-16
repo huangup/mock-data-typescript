@@ -8,6 +8,17 @@ interface Obj {
   [attr: number]: any;
 }
 
+const mockDataArr = Array.from(
+  {
+    length: 100000
+  },
+  (_, index) => ({
+    name: `name-${index}`,
+    age: index,
+    weight: index,
+  })
+)
+
 /** mock 列表型的数据 */
 export const mockDataList = (
   total: number,
