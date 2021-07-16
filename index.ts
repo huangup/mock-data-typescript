@@ -12,7 +12,7 @@ const mockDataArr = Array.from(
   {
     length: 100000
   },
-  (_, index) => ({
+  (value, index) => ({
     name: `name-${index}`,
     age: index,
     weight: index,
